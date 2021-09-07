@@ -1,0 +1,12 @@
+D:\abbccc\DataIO\bin\Debug\DataIO.dll.config
+D:\abbccc\DataIO\bin\Debug\DataIO.dll
+D:\abbccc\DataIO\bin\Debug\DataIO.pdb
+D:\abbccc\DataIO\bin\Debug\DataProvider.dll
+D:\abbccc\DataIO\bin\Debug\EntityFramework.dll
+D:\abbccc\DataIO\bin\Debug\EntityFramework.SqlServer.dll
+D:\abbccc\DataIO\bin\Debug\DataProvider.pdb
+D:\abbccc\DataIO\bin\Debug\EntityFramework.xml
+D:\abbccc\DataIO\bin\Debug\EntityFramework.SqlServer.xml
+D:\abbccc\DataIO\obj\Debug\DataIO.csprojResolveAssemblyReference.cache
+D:\abbccc\DataIO\obj\Debug\DataIO.dll
+D:\abbccc\DataIO\obj\Debug\DataIO.pdb

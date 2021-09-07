@@ -1,0 +1,219 @@
+﻿@*@model DataProvider.Login*@
+@model List<DataProvider.Login>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<table border="1"  id=" userlist">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            user
+        </th>
+        <th>
+            pass
+        </th>
+        <th>
+            fullname
+        </th>
+        <th>
+            Status
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="tr_@item.id">
+            @*<td>
+                @item.id
+            </td>*@
+            <td class="user">
+                @item.username
+            </td>
+            <td class="pas">
+                @item.pass
+            </td>
+            <td class="full">
+                @item.fullname
+            </td>
+            <td>
+                <a href="javascript:deleted('@item.id','@item.username')">
+                    [xoa]
+                </a>
+                <span>&nbsp;</span>
+                <a href="javascript:BeginEdit('@item.id','@item.username','@item.fullname')">
+                    [edit]
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+<h2 id="edit">them moi</h2>
+<input type="text"  id="username" placeholder="nhập tên">
+<input type="password"  id="pass" placeholder="nhập pass">
+<input type="password"  id="repasss" placeholder="nhập pass">
+<input type="text"  id="fullname" placeholder="nhập full name">
+@*<input type="text"  id="txtid" placeholder="nhập full id">*@
+
+
+@*<p id="lbl"></p>
+<div  id="lblms" style="display:none"></div>*@
+<div  onclick="crete()">
+    save
+</div>
+@*<div onclick="SaveEdit()">
+    change
+</div>*@
+<script>
+    //nhận biết thêm mới hay edit
+    //var EditMode = false;
+    //var EditId = '';
+    //chọn thêm hay edit
+   // function EditOrAdd() {
+        //if (EditMode) {
+          
+        //    SaveEdit();
+        //}
+        //else{
+       // crete();
+        //}
+        //SaveEdit();
+    //}
+
+    function crete() {
+        var username = $("#username").val();
+        var pass = $("#pass").val();
+        var fullname = $("#fullname").val();
+        ///
+
+        var form = new FormData();
+        form.append("username", username);
+        form.append("pass",pass);
+        form.append("fullname",fullname);
+        ///goi Ajax
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'http://localhost:59191/Home/crete', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log("shjdfh");
+                var content = xhr.responseText;
+                var js = JSON.parse(content);
+                console.log(js);
+                    var tr = '<tr><td>' + username + ' </td><td> ' + pass + ' </td><td>' + fullname + '</td></tr';
+                    $("#userlist").append(tr);
+                }
+            }
+            xhr.send(form);
+    }
+    function deleted(id, username) {
+        if (confirm('ban co muon xoa:' + username)) {
+
+            var form = new FormData();
+            form.append("id", id);
+            //
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", 'http://localhost:59191/Home/deleted', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readystate == 4 && xhr.status == 200) {
+                    var content = xhr.responsetext;
+                    var js = json.parse(content);
+                    $('#tr_' + id).remove();
+                    //if (js.data.status == "ok") {
+                    //    $('#tr_' + id).remove();
+                    //}
+
+
+                }
+            }
+        }
+        xhr.send(form);
+    } 
+   // edit
+    //function beginedit(id, username, fullname) {
+    //    //giai đoạn 1
+    //    editmode = true;
+
+    //    $("#username").val(username);
+    //    $("#fullname").val(fullname);
+
+    //    $("#txtid").val(id);
+
+    //    $("#change").html("edit");
+    //    $("#edit").html("edit");
+    //   // editid = id;
+    //}
+    ////giai đoạn 2
+    //function saveedit() {
+    //    var id = $("#txtid").val();
+    //    var username = $("#username").val();
+    //    var pass = $("#pass").val();
+    //    var repasss = $("#repasss").val();
+    //    var fullname = $("#fullname").val();
+    //    if (username == ' ' || fullname == ' ') {
+    //        $("#lblbs").html("phai nhập đầy đủ thông tin trừ pass");
+    //        $("#lblbs").css('color', 'red');
+    //        $("#lblbs").css('display', 'block');
+    //        $("#lblbs").css('width', '105px');
+    //        return;
+    //    }
+    //    else if (pass != ' ' && pass != repasss) {
+    //        $("#lblbs").html("phai nhập mk same");
+    //        $("#lblbs").css('color', 'red');
+    //        $("#lblbs").css('display', 'block');
+    //        $("#lblbs").css('width', '105px');
+    //        return;
+    //    }
+
+    //    ////ajax
+    //    var form = new formdata();
+    //    form.append = ("id", id);
+    //    form.append = ("username", username);
+    //    form.append = ("pass", pass);
+    //    form.append = ("fullname", fullname);
+    //}
+    //var xhr = new xmlhttprequest();
+    //xhr.open("post", 'http://localhost:59191/home/saveedit', true);
+    //xhr.onreadystatechange = function () {
+    //    if (xhr.readystate == 4 && xhr.status == 200) {
+    //        var content = xhr.responsetext;
+    //        var js = json.parse(content);
+    //        if (js.data.status == "ok") {
+    //            //cặp nhật hiển thị lên table
+    //            //  $("tr_" + id).remove();
+
+    //            $("#tr_" + id + '.user').html(username);
+    //            $("#tr_" + id + '.full').html(fullname);
+    //            if (pass != ' ') {
+    //                $("#tr_" + editid + '.pas').html(pass);
+    //            }
+
+
+    //            $("#lblbs").html("đã edit");
+    //            $("#lblbs").css('color', 'screen');
+    //            $("#lblbs").css('display', 'block');
+    //            $("#lblbs").css('width', '105px');
+    //            //
+    //            $("#username").val(' ');
+    //            $("#pass").val(' ');
+    //            $("#fullname").val(' ');
+    //            $("#repass").val(' ');
+    //            $("#txtid").val(' ');
+    //            ///bo chế độ edit
+    //            editmode = false;
+    //            //editid = ' ';
+    //            $("#change").html("add");
+    //            $("#edit").html("thêm");
+    //        }
+    //        else {
+    //            $("#lblbs").html(js.data.message);
+    //            $("#lblbs").css('color', 'red');
+    //            $("#lblbs").css('display', 'block');
+    //            $("#lblbs").css('width', '105px');
+    //        }
+    //    }
+    //    xhr.send(form);
+    //}  
+</script>
