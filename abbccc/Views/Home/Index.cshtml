@@ -28,7 +28,7 @@
             <td>
                 @item.id
             </td>
-            <td class="user">
+            <td class="username">
                 @item.username
             </td>
             <td class="pas">
@@ -122,7 +122,7 @@
                 if (js.Data.status == "OK") {
                     var tra = '<tr><td>'+ "reload lại nha"+'</td><td>' + username + ' </td><td> ' + pass + ' </td><td>' + fullname + '</td></tr>';
                     $("#userlist").append(tra);
-                    console.log("chay toi đâ");
+                   // console.log("chay toi đâ");
 
                     //hiển thị thanh công
                     $("#lblms").html("đã thêm rồi nha");
@@ -133,7 +133,7 @@
                    $("#username").val(' ');
                    $("#pass").val(' ');
                    $("#fullname").val(' ');
-                   $("#repass").val(' ');
+                   $("#repasss").val(' ');
                 }
                 else {
                     $("#lblms").html(js.Data.message());
@@ -154,18 +154,20 @@
             //
             var xhr = new XMLHttpRequest();
             xhr.open("POST", 'http://localhost:59191/Home/deleted', true);
+             
             xhr.onreadystatechange = function () {
-                if (xhr.readystate == 4 && xhr.status == 200) {
-                    var content = xhr.responsetext;
-                    var js = json.parse(content);
-                    $('#tr_' + id).remove();
-                    //if (js.data.status == "ok") {
-                    //    $('#tr_' + id).remove();
-                    //}
-
-
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var content = xhr.responseText;
+                    var js = JSON.parse(content);
+                    if (js.Data.status == "OK") {
+                        console.log($("#tr_" + id));
+                       $("#tr_" + id).remove();
+                        //console.log("hiphop never die");
+                    }
                 }
             }
+
+            
         }
         xhr.send(form);
     } 
@@ -209,7 +211,8 @@
                 var content = xhr.responseText;
                 var js = JSON.parse(content);
                 if (js.Data.status == "OK") {
-                    console.log("tới đây rồi nha");
+                    $("#tr_" + id + '.username').html(username);
+                    $("#tr_" + id + '.fullname').html(fullname);
                     ///
                     $("#lblms").html("Sửa rồi");
                     $("#lblms").css('display', 'block');

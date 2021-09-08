@@ -68,7 +68,7 @@ namespace abbccc.Controllers
                 js.Data = new
                 {
                     status = "ER",
-                    message = "khong dc để trống"
+                    message = "Lỗi"
 
                 };
 
@@ -81,7 +81,7 @@ namespace abbccc.Controllers
                 {
                     js.Data = new
                     {
-                        status = "ER",
+                        status = "ER2",
                         message = "dữ liệu không tồn tại"
                     };
                 }
