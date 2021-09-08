@@ -33,7 +33,7 @@ namespace abbccc.Controllers
             {
                 js.Data = new
                 {
-                    status = "er",
+                    status = "ER",
                     message = "khong de trong"
                 };
 
@@ -115,7 +115,7 @@ namespace abbccc.Controllers
                 js.Data = new
                 {
                     status = "ER",
-                    message = "không dc bỏ trống"
+                    message = "lỗi rồi!"
                 };
             }
             else
@@ -125,6 +125,10 @@ namespace abbccc.Controllers
                 lg.username = username;
                 lg.fullname = fullname;
                 qr.Save();
+                js.Data = new
+                {
+                    status = "OK"
+                };
             }
            return Json(js, JsonRequestBehavior.AllowGet);
         }

@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<table border="1"  id=" userlist">
+<table border="1"  id="userlist">
     <tr>
         <th>
             ID
@@ -51,21 +51,23 @@
 </table>
 
 <h2 id="edit">them moi</h2>
-<input type="text"  id="username" placeholder="nhập tên">
+<input type="text"  id="username" placeholder="nhập username">
 <input type="password"  id="pass" placeholder="nhập pass">
-<input type="password"  id="repasss" placeholder="nhập pass">
+<input type="password"  id="repasss" placeholder="nhập lai pass">
 <input type="text"  id="fullname" placeholder="nhập full name">
 <input type="text"  id="txtid" placeholder="nhập id">
 
+<p id="lbl"></p>
+<div  id="lblms" style="display:none"></div>
 
-@*<p id="lbl"></p>
-<div  id="lblms" style="display:none"></div>*@
-<div  onclick="resave()">
+
+<div style="border:1px solid aqua; color:brown; display:inline" onclick="crete()">
     save
 </div>
-@*<div onclick="SaveEdit()">
+<span>&nbsp;</span>
+<div onclick="resave()" style="border:1px solid aqua; color:brown; display:inline; margin-left:100px">
     change
-</div>*@
+</div>
 <script>
     //nhận biết thêm mới hay edit
     //var EditMode = false;
@@ -82,32 +84,68 @@
         //SaveEdit();
     //}
 
+    //ham tao moi usser
     function crete() {
         var username = $("#username").val();
         var pass = $("#pass").val();
         var fullname = $("#fullname").val();
+        var repasss = $("#repasss").val();
         ///
-
+        if (username == '' || pass ==''||fullname =='') {
+            $("#lblms").html("không được để trống nha");
+            $("#lblms").css('display', 'block');
+            $("#lblms").css('color', 'red');    
+            $("#lblms").css('width', '150px');
+            return;
+        }
+        else if (pass != repasss) {
+            $("#lblms").html("pass khồn trùng rồi bạn ơi");
+            $("#lblms").css('display', 'block');
+            $("#lblms").css('color', 'red');
+            $("#lblms").css('width', '150px');
+            return;
+        }
         var form = new FormData();
         form.append("username", username);
         form.append("pass",pass);
-        form.append("fullname",fullname);
+        form.append("fullname", fullname);
+
+       
         ///goi Ajax
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", 'http://localhost:59191/Home/crete', true);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log("shjdfh");
                 var content = xhr.responseText;
                 var js = JSON.parse(content);
-                console.log(js);
-                    var tr = '<tr><td>' + username + ' </td><td> ' + pass + ' </td><td>' + fullname + '</td></tr';
-                    $("#userlist").append(tr);
+                if (js.Data.status == "OK") {
+                    var tra = '<tr><td>'+ "reload lại nha"+'</td><td>' + username + ' </td><td> ' + pass + ' </td><td>' + fullname + '</td></tr>';
+                    $("#userlist").append(tra);
+                    console.log("chay toi đâ");
+
+                    //hiển thị thanh công
+                    $("#lblms").html("đã thêm rồi nha");
+                    $("#lblms").css('display', 'block');
+                    $("#lblms").css('color', 'blue');
+                    $("#lblms").css('width', '150px');
+                    //
+                   $("#username").val(' ');
+                   $("#pass").val(' ');
+                   $("#fullname").val(' ');
+                   $("#repass").val(' ');
                 }
-            }
+                else {
+                    $("#lblms").html(js.Data.message());
+                    $("#lblms").css('display', 'block');
+                    $("#lblms").css('color', 'screen');
+                    $("#lblms").css('width', '150px');
+                }
+             }
+           }
             xhr.send(form);
     }
+    ////Ham DELETE
     function deleted(id, username) {
         if (confirm('ban co muon xoa:' + username)) {
 
@@ -148,6 +186,15 @@
         var username = $("#username").val();
         var pass = $("#pass").val();
         var fullname = $("#fullname").val();
+
+        //validation
+        if (username == '' || fullname == '') {
+            $("#lblms").html("không được để trống nha");
+            $("#lblms").css('display', 'block');
+            $("#lblms").css('color', 'red');
+            $("#lblms").css('width', '150px');
+            return;
+        }
         //
         var form = new FormData();
         form.append("id",id);
@@ -161,10 +208,21 @@
             if(xhr.readyState == 4 && xhr.status == 200){
                 var content = xhr.responseText;
                 var js = JSON.parse(content);
-               
-                    $('#tr_' + id + '.user').html(username);
-                    $('#tr_' + id + '.full').html(fullname);
+                if (js.Data.status == "OK") {
+                    console.log("tới đây rồi nha");
+                    ///
+                    $("#lblms").html("Sửa rồi");
+                    $("#lblms").css('display', 'block');
+                    $("#lblms").css('color', 'green');
+                    $("#lblms").css('width', '150px');
                 }
+                else {
+                    $("#lblms").html(js.Data.message());
+                    $("#lblms").css('display', 'block');
+                    $("#lblms").css('color', 'red');
+                    $("#lblms").css('width', '150px');
+                }
+             }
             
          }
         xhr.send(form);
