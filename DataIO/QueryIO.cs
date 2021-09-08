@@ -19,10 +19,12 @@ namespace DataIO
         {
             return mydb.Login.ToList();
         }
+        //them 1 user mới , viết dùng chung
         public void AddObject<T>(T obj)
         {
             mydb.Set(obj.GetType()).Add(obj);
         }
+        //xóa 1 user
         public void removebbb<T>(T obj)
         {
             mydb.Set(obj.GetType()).Remove(obj);

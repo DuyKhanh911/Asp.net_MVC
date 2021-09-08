@@ -132,88 +132,88 @@
         xhr.send(form);
     } 
    // edit
-    //function beginedit(id, username, fullname) {
-    //    //giai đoạn 1
-    //    editmode = true;
+    function beginedit(id, username, fullname) {
+        //giai đoạn 1
+        editmode = true;
 
-    //    $("#username").val(username);
-    //    $("#fullname").val(fullname);
+        $("#username").val(username);
+        $("#fullname").val(fullname);
 
-    //    $("#txtid").val(id);
+        $("#txtid").val(id);
 
-    //    $("#change").html("edit");
-    //    $("#edit").html("edit");
-    //   // editid = id;
-    //}
-    ////giai đoạn 2
-    //function saveedit() {
-    //    var id = $("#txtid").val();
-    //    var username = $("#username").val();
-    //    var pass = $("#pass").val();
-    //    var repasss = $("#repasss").val();
-    //    var fullname = $("#fullname").val();
-    //    if (username == ' ' || fullname == ' ') {
-    //        $("#lblbs").html("phai nhập đầy đủ thông tin trừ pass");
-    //        $("#lblbs").css('color', 'red');
-    //        $("#lblbs").css('display', 'block');
-    //        $("#lblbs").css('width', '105px');
-    //        return;
-    //    }
-    //    else if (pass != ' ' && pass != repasss) {
-    //        $("#lblbs").html("phai nhập mk same");
-    //        $("#lblbs").css('color', 'red');
-    //        $("#lblbs").css('display', 'block');
-    //        $("#lblbs").css('width', '105px');
-    //        return;
-    //    }
+        $("#change").html("edit");
+        $("#edit").html("edit");
+       // editid = id;
+    }
+    //giai đoạn 2
+    function saveedit() {
+        var id = $("#txtid").val();
+        var username = $("#username").val();
+        var pass = $("#pass").val();
+        var repasss = $("#repasss").val();
+        var fullname = $("#fullname").val();
+        if (username == ' ' || fullname == ' ') {
+            $("#lblbs").html("phai nhập đầy đủ thông tin trừ pass");
+            $("#lblbs").css('color', 'red');
+            $("#lblbs").css('display', 'block');
+            $("#lblbs").css('width', '105px');
+            return;
+        }
+        else if (pass != ' ' && pass != repasss) {
+            $("#lblbs").html("phai nhập mk same");
+            $("#lblbs").css('color', 'red');
+            $("#lblbs").css('display', 'block');
+            $("#lblbs").css('width', '105px');
+            return;
+        }
 
-    //    ////ajax
-    //    var form = new formdata();
-    //    form.append = ("id", id);
-    //    form.append = ("username", username);
-    //    form.append = ("pass", pass);
-    //    form.append = ("fullname", fullname);
-    //}
-    //var xhr = new xmlhttprequest();
-    //xhr.open("post", 'http://localhost:59191/home/saveedit', true);
-    //xhr.onreadystatechange = function () {
-    //    if (xhr.readystate == 4 && xhr.status == 200) {
-    //        var content = xhr.responsetext;
-    //        var js = json.parse(content);
-    //        if (js.data.status == "ok") {
-    //            //cặp nhật hiển thị lên table
-    //            //  $("tr_" + id).remove();
+        ////ajax
+        var form = new formdata();
+        form.append = ("id", id);
+        form.append = ("username", username);
+        form.append = ("pass", pass);
+        form.append = ("fullname", fullname);
+    }
+    var xhr = new xmlhttprequest();
+    xhr.open("post", 'http://localhost:59191/home/saveedit', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readystate == 4 && xhr.status == 200) {
+            var content = xhr.responsetext;
+            var js = json.parse(content);
+            if (js.data.status == "ok") {
+                //cặp nhật hiển thị lên table
+                //  $("tr_" + id).remove();
 
-    //            $("#tr_" + id + '.user').html(username);
-    //            $("#tr_" + id + '.full').html(fullname);
-    //            if (pass != ' ') {
-    //                $("#tr_" + editid + '.pas').html(pass);
-    //            }
+                $("#tr_" + id + '.user').html(username);
+                $("#tr_" + id + '.full').html(fullname);
+                if (pass != ' ') {
+                    $("#tr_" + editid + '.pas').html(pass);
+                }
 
 
-    //            $("#lblbs").html("đã edit");
-    //            $("#lblbs").css('color', 'screen');
-    //            $("#lblbs").css('display', 'block');
-    //            $("#lblbs").css('width', '105px');
-    //            //
-    //            $("#username").val(' ');
-    //            $("#pass").val(' ');
-    //            $("#fullname").val(' ');
-    //            $("#repass").val(' ');
-    //            $("#txtid").val(' ');
-    //            ///bo chế độ edit
-    //            editmode = false;
-    //            //editid = ' ';
-    //            $("#change").html("add");
-    //            $("#edit").html("thêm");
-    //        }
-    //        else {
-    //            $("#lblbs").html(js.data.message);
-    //            $("#lblbs").css('color', 'red');
-    //            $("#lblbs").css('display', 'block');
-    //            $("#lblbs").css('width', '105px');
-    //        }
-    //    }
-    //    xhr.send(form);
-    //}  
+                $("#lblbs").html("đã edit");
+                $("#lblbs").css('color', 'screen');
+                $("#lblbs").css('display', 'block');
+                $("#lblbs").css('width', '105px');
+                //
+                $("#username").val(' ');
+                $("#pass").val(' ');
+                $("#fullname").val(' ');
+                $("#repass").val(' ');
+                $("#txtid").val(' ');
+                ///bo chế độ edit
+                editmode = false;
+                //editid = ' ';
+                $("#change").html("add");
+                $("#edit").html("thêm");
+            }
+            else {
+                $("#lblbs").html(js.data.message);
+                $("#lblbs").css('color', 'red');
+                $("#lblbs").css('display', 'block');
+                $("#lblbs").css('width', '105px');
+            }
+        }
+        xhr.send(form);
+    }  
 </script>

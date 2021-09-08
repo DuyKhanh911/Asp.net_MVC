@@ -99,52 +99,55 @@ namespace abbccc.Controllers
             return Json(js, JsonRequestBehavior.AllowGet);
         }
         ////update
-        //[HttpPost]
-        //public JsonResult SaveEdit(FormCollection data)
-        //{
-        //    var uid = data["id"];
-        //    var username = data["username"];
-        //    var pass = data["pass"];
-        //    var fullname = data["fullname"];
+        [HttpPost]
+        public JsonResult SaveEdit(FormCollection data)
+        {
+            var uid = data["id"];
+            var username = data["username"];
+            var pass = data["pass"];
+            var fullname = data["fullname"];
 
-        //    JsonResult js = new JsonResult();
-        //    if (string.IsNullOrEmpty(uid) ||
-        //        string.IsNullOrEmpty(username) ||
-        //        string.IsNullOrEmpty(fullname))
-        //    {
-        //        js.Data = new
-        //        {
-        //            status = "ER",
-        //            message = "không dc để trống dữ liệu trừ pass"
-        //        };
-        //    }
-        //    else {
-        //        QueryIO qr = new QueryIO();
-        //        Login lg = qr.getOBJ(uid);
-        //        if (lg == null)
-        //        {
-        //            js.Data = new
-        //            {
-        //                status = "ER",
-        //                message = "dữ liệu không tồn tại"
-        //            };
-        //        }
-        //        else {
-        //            lg.username = username;
-        //            if (!string.IsNullOrEmpty(pass)) {
-        //                lg.pass = pass;
-        //            }
-        //            lg.fullname = fullname;
+            JsonResult js = new JsonResult();
+            if (string.IsNullOrEmpty(uid) ||
+                string.IsNullOrEmpty(username) ||
+                string.IsNullOrEmpty(fullname))
+            {
+                js.Data = new
+                {
+                    status = "ER",
+                    message = "không dc để trống dữ liệu trừ pass"
+                };
+            }
+            else
+            {
+                QueryIO qr = new QueryIO();
+                Login lg = qr.getOBJ(uid);
+                if (lg == null)
+                {
+                    js.Data = new
+                    {
+                        status = "ER",
+                        message = "dữ liệu không tồn tại"
+                    };
+                }
+                else
+                {
+                    lg.username = username;
+                    if (!string.IsNullOrEmpty(pass))
+                    {
+                        lg.pass = pass;
+                    }
+                    lg.fullname = fullname;
 
-        //            //gọi lưu lại
-        //            qr.Save();
-        //            js.Data = new
-        //            {
-        //                status = "OK"
-        //            };
-        //        }
-        //    }
-        //    return Json(js, JsonRequestBehavior.AllowGet);
-        //}
+                    //gọi lưu lại
+                    qr.Save();
+                    js.Data = new
+                    {
+                        status = "OK"
+                    };
+                }
+            }
+            return Json(js, JsonRequestBehavior.AllowGet);
+        }
     }
 }
