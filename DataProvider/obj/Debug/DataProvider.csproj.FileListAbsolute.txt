@@ -8,3 +8,13 @@ D:\abbccc\DataProvider\bin\Debug\EntityFramework.SqlServer.xml
 D:\abbccc\DataProvider\obj\Debug\DataProvider.csprojResolveAssemblyReference.cache
 D:\abbccc\DataProvider\obj\Debug\DataProvider.dll
 D:\abbccc\DataProvider\obj\Debug\DataProvider.pdb
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\bin\Debug\DataProvider.dll.config
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\bin\Debug\DataProvider.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\bin\Debug\DataProvider.pdb
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\bin\Debug\EntityFramework.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\bin\Debug\EntityFramework.xml
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\obj\Debug\DataProvider.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\obj\Debug\DataProvider.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataProvider\obj\Debug\DataProvider.pdb

@@ -10,3 +10,15 @@ D:\abbccc\DataIO\bin\Debug\EntityFramework.SqlServer.xml
 D:\abbccc\DataIO\obj\Debug\DataIO.csprojResolveAssemblyReference.cache
 D:\abbccc\DataIO\obj\Debug\DataIO.dll
 D:\abbccc\DataIO\obj\Debug\DataIO.pdb
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\DataIO.dll.config
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\DataIO.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\DataIO.pdb
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\DataProvider.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\EntityFramework.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\DataProvider.pdb
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\EntityFramework.xml
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\obj\Debug\DataIO.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\obj\Debug\DataIO.dll
+C:\Users\ASUS\Desktop\gitClone\Asp.net_MVC\DataIO\obj\Debug\DataIO.pdb
