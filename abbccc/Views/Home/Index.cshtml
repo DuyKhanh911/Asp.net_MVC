@@ -25,9 +25,9 @@
     @foreach (var item in Model)
     {
         <tr id="tr_@item.id">
-            @*<td>
+            <td>
                 @item.id
-            </td>*@
+            </td>
             <td class="user">
                 @item.username
             </td>
@@ -55,12 +55,12 @@
 <input type="password"  id="pass" placeholder="nhập pass">
 <input type="password"  id="repasss" placeholder="nhập pass">
 <input type="text"  id="fullname" placeholder="nhập full name">
-@*<input type="text"  id="txtid" placeholder="nhập full id">*@
+<input type="text"  id="txtid" placeholder="nhập id">
 
 
 @*<p id="lbl"></p>
 <div  id="lblms" style="display:none"></div>*@
-<div  onclick="crete()">
+<div  onclick="resave()">
     save
 </div>
 @*<div onclick="SaveEdit()">
@@ -132,89 +132,41 @@
         xhr.send(form);
     } 
    // edit
-    function beginedit(id, username, fullname) {
+    function BeginEdit(id, username, fullname) {
         //giai đoạn 1
-        editmode = true;
+       // editmode = true;
 
         $("#username").val(username);
         $("#fullname").val(fullname);
 
         $("#txtid").val(id);
-
-        $("#change").html("edit");
-        $("#edit").html("edit");
        // editid = id;
     }
     //giai đoạn 2
-    function saveedit() {
+    function resave() {
         var id = $("#txtid").val();
         var username = $("#username").val();
         var pass = $("#pass").val();
-        var repasss = $("#repasss").val();
         var fullname = $("#fullname").val();
-        if (username == ' ' || fullname == ' ') {
-            $("#lblbs").html("phai nhập đầy đủ thông tin trừ pass");
-            $("#lblbs").css('color', 'red');
-            $("#lblbs").css('display', 'block');
-            $("#lblbs").css('width', '105px');
-            return;
-        }
-        else if (pass != ' ' && pass != repasss) {
-            $("#lblbs").html("phai nhập mk same");
-            $("#lblbs").css('color', 'red');
-            $("#lblbs").css('display', 'block');
-            $("#lblbs").css('width', '105px');
-            return;
-        }
-
-        ////ajax
-        var form = new formdata();
-        form.append = ("id", id);
-        form.append = ("username", username);
-        form.append = ("pass", pass);
-        form.append = ("fullname", fullname);
-    }
-    var xhr = new xmlhttprequest();
-    xhr.open("post", 'http://localhost:59191/home/saveedit', true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readystate == 4 && xhr.status == 200) {
-            var content = xhr.responsetext;
-            var js = json.parse(content);
-            if (js.data.status == "ok") {
-                //cặp nhật hiển thị lên table
-                //  $("tr_" + id).remove();
-
-                $("#tr_" + id + '.user').html(username);
-                $("#tr_" + id + '.full').html(fullname);
-                if (pass != ' ') {
-                    $("#tr_" + editid + '.pas').html(pass);
+        //
+        var form = new FormData();
+        form.append("id",id);
+        form.append("username",username);
+        form.append("pass",pass);
+        form.append("fullname",fullname);
+        //
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'http://localhost:59191/Home/resave', true);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var content = xhr.responseText;
+                var js = JSON.parse(content);
+               
+                    $('#tr_' + id + '.user').html(username);
+                    $('#tr_' + id + '.full').html(fullname);
                 }
-
-
-                $("#lblbs").html("đã edit");
-                $("#lblbs").css('color', 'screen');
-                $("#lblbs").css('display', 'block');
-                $("#lblbs").css('width', '105px');
-                //
-                $("#username").val(' ');
-                $("#pass").val(' ');
-                $("#fullname").val(' ');
-                $("#repass").val(' ');
-                $("#txtid").val(' ');
-                ///bo chế độ edit
-                editmode = false;
-                //editid = ' ';
-                $("#change").html("add");
-                $("#edit").html("thêm");
-            }
-            else {
-                $("#lblbs").html(js.data.message);
-                $("#lblbs").css('color', 'red');
-                $("#lblbs").css('display', 'block');
-                $("#lblbs").css('width', '105px');
-            }
-        }
+            
+         }
         xhr.send(form);
-        //helloo
-    }  
+    }
 </script>

@@ -98,57 +98,35 @@ namespace abbccc.Controllers
             }
             return Json(js, JsonRequestBehavior.AllowGet);
         }
-        ////update
+        //update
         [HttpPost]
-        public JsonResult SaveEdit(FormCollection data)
+        public JsonResult resave(FormCollection data)
         {
-            var uid = data["id"];
-            var username = data["username"];
-            var pass = data["pass"];
-            var fullname = data["fullname"];
-
+            string id = data["id"];
+            string username = data["username"];
+            string pass = data["pass"];
+            string fullname = data["fullname"];
+            //
             JsonResult js = new JsonResult();
-            if (string.IsNullOrEmpty(uid) ||
+            if (string.IsNullOrEmpty(id) ||
                 string.IsNullOrEmpty(username) ||
                 string.IsNullOrEmpty(fullname))
             {
                 js.Data = new
                 {
                     status = "ER",
-                    message = "không dc để trống dữ liệu trừ pass"
+                    message = "không dc bỏ trống"
                 };
             }
             else
             {
                 QueryIO qr = new QueryIO();
-                Login lg = qr.getOBJ(uid);
-                if (lg == null)
-                {
-                    js.Data = new
-                    {
-                        status = "ER",
-                        message = "dữ liệu không tồn tại"
-                    };
-                }
-                else
-                {
-                    lg.username = username;
-                    if (!string.IsNullOrEmpty(pass))
-                    {
-                        lg.pass = pass;
-                    }
-                    lg.fullname = fullname;
-
-                    //gọi lưu lại
-                    qr.Save();
-                    js.Data = new
-                    {
-                        status = "OK"
-                    };
-                }
+                Login lg = qr.getOBJ(id);
+                lg.username = username;
+                lg.fullname = fullname;
+                qr.Save();
             }
-            return Json(js, JsonRequestBehavior.AllowGet);
-            //test
+           return Json(js, JsonRequestBehavior.AllowGet);
         }
     }
 }
