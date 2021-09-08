@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<table border="1"  id="userlist">
+<table border="1"  id="userlist" style=" margin:50px ">
     <tr>
         <th>
             ID
@@ -55,7 +55,7 @@
 <input type="password"  id="pass" placeholder="nhập pass">
 <input type="password"  id="repasss" placeholder="nhập lai pass">
 <input type="text"  id="fullname" placeholder="nhập full name">
-<input type="text"  id="txtid" placeholder="nhập id">
+<input type="text"  id="txtid" placeholder="nhập id" style="display:none">
 
 <p id="lbl"></p>
 <div  id="lblms" style="display:none"></div>
@@ -211,6 +211,7 @@
                 var content = xhr.responseText;
                 var js = JSON.parse(content);
                 if (js.Data.status == "OK") {
+                    $("#tr_" + id + '.username').html(username);
                     $("#tr_" + id + '.username').html(username);
                     $("#tr_" + id + '.fullname').html(fullname);
                     ///

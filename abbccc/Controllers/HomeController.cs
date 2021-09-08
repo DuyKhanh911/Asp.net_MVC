@@ -122,13 +122,17 @@ namespace abbccc.Controllers
             {
                 QueryIO qr = new QueryIO();
                 Login lg = qr.getOBJ(id);
-                lg.username = username;
-                lg.fullname = fullname;
-                qr.Save();
-                js.Data = new
+                if (lg != null)
                 {
-                    status = "OK"
-                };
+                    lg.username = username;
+                    lg.fullname = fullname;
+                    qr.Save();
+                    js.Data = new
+                    {
+                        status = "OK"
+                    };
+                }
+               
             }
            return Json(js, JsonRequestBehavior.AllowGet);
         }
